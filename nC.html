@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="/archivos/nformat.css" rel="stylesheet" type="text/css" />
+<link href="/archivos/canvas_controller.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="/archivos/jquery-1.5.1.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/ligaca-1.1.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/nprocessor_content_edit.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/nregister_context.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/positionObject.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/canvas_controller.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/processorTransitions.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/json.js"></script>
+<title>Comoposici&oacute;n de Contenido</title>
+</head>
+<body onload="user_reference(),processor.doLoad()">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%" height="10%">&nbsp;</td>
+    <td width="80%" height="10%">&nbsp;</td>
+    <td width="10%" height="10%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10%" height="80%">&nbsp;</td>
+    <td width="80%" height="80%"><div class="frame">&nbsp;
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="10%">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td width="10%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="10%">&nbsp;</td>
+      <td><div class="C_Video_Izq" id="C_Canvas">
+                 <table border="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><canvas id="canvas_video"/></td>
+    </tr>
+    <tr>
+      <td><TABLE cellpadding="0" border="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td colspan="4"><div id="div_bar_p"></div></td>
+    </tr>
+    <tr>
+      <td width="50px"><img name=""  src="/archivos/play.jpg" height="15" onclick="play()"/>
+        <img name=""   src="/archivos/pause.jpg" height="15" onclick="pause()"/></td>
+      <td align="right"><img name=""  src="/archivos/volless.jpg" height="15" onclick="vol_down()"/></td>
+      <td width="100px"><div id="div_bar_vol"></div></td>
+      <td width="15px"><img name=""  src="/archivos/volplus.jpg" height="15" onclick="vol_up()"/></td>
+    </tr>
+  </tbody>
+</TABLE></td>
+    </tr>
+  </tbody>
+</table>
+              </div></td>
+      <td>&nbsp;</td>
+      <td align="right"><div class="historic"><table cellpadding="0" border="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td><div style="height:5px"></div></td>
+    </tr>
+    <tr>
+      <td align="center"><div id="div_panel" class="panel"></div></td>
+    </tr>
+    <tr>
+      <td align="center"><div class="searcher"><table cellpadding="0" border="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="right" style="color : #51504B; font-weight : bold;">Buscar: </td>
+      <td align="center" valign="top" width="150"> <input type="text" id="tf_search" name="tf_search" size="20" /></td>
+    </tr>
+  </tbody>
+</table></div></td>
+    </tr>
+    <tr>
+      <td><div id="div_contents" class="div_contents" style="height:295px;"></div></td>
+    </tr>
+  </tbody>
+</table></div></td>
+      <td width="10%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&nbsp;</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="3"><div id="C_Linea_Tiempo">
+  <table height="100"  border="0" id="linea_tiempo">
+    <tr id="fila_tiempo">
+	  <td id="0_c_"><canvas id="0_LT_C" width="100" height="90" style="background:#6699FF;" onmouseover="resaltar_PELT(id,'0')" onmouseout="resaltar_PELT(id,'1')" ondragover="OverDrag()"  ondrop="dropContent(id)"/></td>
+      <td id="0_t_"><canvas id="0_LT_T" width="25" height="90"  style="background:#6699FF;" onmouseover="resaltar_PELT(id,'0')" onmouseout="resaltar_PELT(id,'1')" ondragover="OverDrag()"  ondrop="dropTransition(id)"/></td> 
+    </tr>
+  </table>
+</div></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td width="10%"></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td align="right"><input type="button" value="Cancelar" onclick="window.location='nB3.html'"/><input type="button" value=" Guardar " onclick="do_save()"/></td>
+      <td width="10%" align="left"></td>
+    </tr>
+  </tbody>
+</table>
+      </div></td>
+    <td width="10%" height="80%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10%" height="10%" align="left"></td>
+    <td width="80%" height="10%">&nbsp;</td>
+    <td width="10%" height="10%" align="right"></td>
+  </tr>
+</table>
+<div id="C_Video" class="C_Video">
+  <table width="100%" border="0">
+    <tr>
+      <td><video id="video" controls="true" class="Video"/></td>
+    </tr>
+    <tr>
+      <td id="cut_video">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="right" valign="bottom"><input name="button" type="button" onclick="cerrar_video()" value="Cerrar"/></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

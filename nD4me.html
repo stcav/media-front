@@ -1,0 +1,153 @@
+|<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script language="JavaScript" type="text/javascript" src="/archivos/nprocessor_i_m_e_time_line.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/nprocessor_i_m_e_elements.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/positionObject.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/jquery-1.5.1.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/ligaca-1.1.1.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/json.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/nform_edit_temp.js"></script>
+<link href="/archivos/nstyle_i_m.css" rel="stylesheet" type="text/css" />
+
+<title>Mapa de Interactividad</title>
+</head>
+
+<body onload="init()">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tbody>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="90%"><div class="frame" style="border"><TABLE cellpadding="0" border="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td width="5%"></td>
+      <td></td>
+      <td width="5%"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td align="center"><table cellspacing="0" cellpadding="0" border="0" height="100%">
+  <tbody>
+    <tr>
+      <td height="10"></td>
+      <td height="10"></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="1" align="center"></td>
+        <td align="center"></td>
+      </tr>
+      <tr>
+        <td width="500" height="300" align="center" valign="bottom" id="td_canvas_video"><div id="div_canvas_video"></div></td>
+        <td width="500" height="300" align="left" valign="top"><div id="div_menu">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><div id="div_bar_menu"></div></td>
+            </tr>
+			<tr>
+              <td><div id="div_element_search" align="right"><input id="search_element" type="text" size="52" />
+                <label>
+                <input type="submit" id="get_search" value="Buscar" />
+                </label>
+              </div></td>
+            </tr>
+            <tr>
+              <td><div id="div_element_menu"></div></td>
+            </tr>
+          </table>
+        </div></td>
+      </tr>
+      <tr>
+        <td height="1" align="center">&nbsp;</td>
+        <td align="center">&nbsp;</td>
+      </tr>
+    </table></td>
+    </tr>
+    <tr>
+      <td valign="bottom" align="right" width="100"><img src="/archivos/lines_im.JPG" /></td>
+      <td onclick="verificando()" id="container_line_td" class="grid_line" align="left" height="350" width="900"><table width="900" height="350" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed;">
+        <tr>
+          <td width="900" height="20">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="900" height="30" valign="bottom"><div height="100" id="div_metrica"></div></td>
+        </tr>
+        <tr>
+          <td width="900" height="100"><div  height="100" id="div_lc"></div></td>
+        </tr>
+        <tr>
+          <td width="900" height="100"><div  height="100" id="div_lt"></div></td>
+        </tr>
+        <tr>
+          <td width="900" height="100"><div  height="100" id="div_li"></div></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><label>
+      <input type="submit" value=" Atras " onclick="do_back()"/>
+    </label></td>
+      <td align="right"><label>
+      <input type="submit" name="Submit3" value="Guardar" onclick="do_save()"/>
+    </label></td>
+    </tr>
+  </tbody>
+</table></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</TABLE></div></td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="80%">&nbsp;</td>
+      <td width="5%">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<div id="info">
+  <table width="100%" border="0">
+    <tr>
+      <td width="110" height="97" nowrap="nowrap" id="imageInfo">&nbsp;</td>
+      <td width="337" valign="middle"><div align="justify" id="titleInfo">
+        
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="2"><span class="Estilo1">Detalles</span></td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top"><div align="justify" id="detailInfo">
+        
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="2"><span class="Estilo1">Edicion</span></td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top"><div align="justify" id="editionInfo">
+        
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="right"></div>
+      </label></td>
+    </tr>
+  </table>
+  <div align="right">
+    <input id="doneinfo" type="submit" name="Submit" value="Aceptar" />
+  </div>
+</div>
+</body>
+</html>

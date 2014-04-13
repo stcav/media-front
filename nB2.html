@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Rotular Contenido Multimedia</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/archivos/nformat.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="/archivos/jquery-1.5.1.js"></script>
+<script language="JavaScript" type="text/javascript" src="/archivos/nprocessor_label_content.js"></script>
+
+</head>
+<body onload="init()">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%">&nbsp;</td>
+    <td width="80%">&nbsp;</td>
+    <td width="10%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10%">&nbsp;</td>
+    <td width="80%"><div class="frame"><table cellpadding="0" border="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+          <td align="center" valign="middle" style="color : #4d4c47; font-size : 20px; font-weight : bold;">Paso 2: Rotule el contenido</td>
+    </tr>
+    <tr>
+      <td align="center"><table width="90%" cellspacing="0" border="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="label">Titulo</td>
+      <td><input name="textfield" type="text" id="titulo" tabindex="1" size="80" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="label">Sinopsis</td>
+      <td><textarea name="textarea" id="sinopsis" cols="79" rows="5" tabindex="2"></textarea></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="label">Fuente</td>
+      <td><input name="textfield" type="text" id="fuente" tabindex="3" size="80" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="color:#53524E">Para seleccionar varias opciones utilice la tecla Ctrl</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="label">Etiquetas</td>
+      <td><form name="formTags">
+            <select id="select" name="select" size="6" class="select" multiple="MULTIPLE">
+            </select>
+          </form></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="color:#53524E">Si no encuentra las etiquetas deseadas, escribalas en el siguiente cuadro separandolas con una coma</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input name="textfield2" type="text" id="etiquetas" tabindex="4" size="80" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="color:#53524E">Recuerde que todos los campos son obligatorios...</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="4"><div id="div_log" style="height:100%"></div><div style="text-align:right;"><input type="button" value="Siguiente" onclick="do_label_content()" /></div></td>
+    </tr>
+  </tbody>
+</table></td>
+    </tr>
+  </tbody>
+</table></div></td>
+    <td width="10%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10%">&nbsp;</td>
+    <td width="80%"></td>
+    <td width="10%">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>
