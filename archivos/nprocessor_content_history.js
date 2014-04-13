@@ -23,11 +23,22 @@ function init() {
 	}
 }
 
-function get_contents() {
+/*
+* create all grid system associated with user's videos
+*
+* @param ignoreMetric [boolean], add ignore_metric url param into ajax url
+*/
+function get_contents(ignoreMetric) {
 	//peticion AJAX para obtener los valores del elemento asociado
+	var ignoreMetricParam = "";
+
+	if(ignoreMetric == true){
+		ignoreMetricParam = "&ignore_metric=true";
+	}
+
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
-		data : "operation=0",
+		data : "operation=0"+ignoreMetricParam,
 		type : "POST",
 		success : function(response) {
 			//Obteniendo elemento de la BD
@@ -102,6 +113,7 @@ function load_content_panel(contents) {
 						type_element = get_id_click_element_menuBar(this.id, event.clientY) + 1;
 						console.log(type_element);
 						switch(type_element){
+							// play picked video
 							case 1:{
 								$.ajax({
 								url : "/ContentProcessorServer/ContentProcessorServlet",
@@ -120,6 +132,7 @@ function load_content_panel(contents) {
 								});
 								break;
 							}
+							// edit video
 							case 2:{
 									fees = new Array();
 									fee = new FormEditElement();
@@ -180,7 +193,7 @@ function do_send_data_we(URL, data_) {
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);
-			get_contents();
+			get_contents(true);
 		}
 	});
 }
