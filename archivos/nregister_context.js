@@ -2,19 +2,19 @@
 
 function user_reference() {
 	$.ajax({
-		//url : "http://192.168.120.26:8080/stcav/ReferenceServlet",
+		//url : "http://192.168.119.98:8080/stcav/ReferenceServlet",
 		//url: "http://localhost:38415/STCAV/ReferenceServlet",
 		url: "/STCAV/ReferenceServlet",
 		data : "operation=1",
 		type : "POST",
 		dataType: "script",
 		async : false
-	});
+	}).responseText;
 }
 
 function community_reference() {
 	$.ajax({
-		//url : "http://192.168.120.26:8080/stcav/ReferenceServlet",
+		//url : "http://192.168.119.98:8080/stcav/ReferenceServlet",
 		//url: "http://localhost:38415/STCAV/ReferenceServlet",
 		url: "/STCAV/ReferenceServlet",
 		data : "operation=2",

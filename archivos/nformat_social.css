@@ -1,0 +1,29 @@
+/* CSS Document */
+
+.social_container{
+	position:absolute;
+	background-color:#DDDDDD;
+	top:500px;
+	left:900px;
+	width:300px;
+	height:250px;
+	z-index:2;	
+	vertical-align:top;
+	/*border-width: 1px;
+	border-color: #333333;
+	border-style: groove;*/
+	border: 5px solid #BBD7FE;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.chat{
+	background-color:#FFFFFF;
+	width:290px;
+	height:200px;
+	z-index:2;	
+	vertical-align:top;
+	/*border-width: 1px;
+	border-color: #333333;
+	border-style: groove;*/
+	border: 1px solid #444444;
+}

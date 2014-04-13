@@ -297,61 +297,149 @@ function ver_video(content){
         celda.innerHTML = "";
         line_cut = document.createElement("div");
         line_cut.id = "c_barra_tiempo";
-        line_cut.onmousemove = function(event){
-            //e = event||window.event;
-            identificar_cursor(event);
-            mover_cursor(event);
-        }
-        line_cut.onmouseup = function(){
-            drag_off_c();
-        }
-
+        text_cut=document.createElement("div");
+        text_cut.width=30;
+        text_cut.height=0;
+        text_cut.style.position="relative";
+        text_cut.style.left="540px";
+        text_cut.style.top="-20px";
+        text_cut.style.width="30px";
+        text_cut.style.height="0px";
+        
+        celda.appendChild(line_cut);
+        celda.appendChild(text_cut);
+		var width_lin_cut=501;
+		var width_cursors=10;
+		
+		//****************** estableciendo el texto de corte ********************//
+		var text_canvas = document.createElement("canvas");
+		text_canvas.id="text_cut";
+		text_cut.appendChild(text_canvas);
         //****************** estableciendo los cursores ********************//
         //viendo el estado de los cursores, si el video ya fue editado
         var temp_object = vector_edicion[idElementEdit];
-        pos_cur1 = (temp_object.cut_home * 481) / temp_object.duration;
-        pos_cur2 = (temp_object.cut_end * 481) / temp_object.duration;
+        pos_cur1 = (temp_object.cut_home * (width_lin_cut-width_cursors*2)) / temp_object.duration;
+        pos_cur2 = (temp_object.cut_end * (width_lin_cut-width_cursors*2)) / temp_object.duration;
         console.log(" posiciones iniciales cur1 :" + pos_cur1 + " cur2: " + pos_cur2);
+        
+		//--------------------------------------------------------------------------------------//
+		
+		var stage = new Kinetic.Stage({
+          container: 'c_barra_tiempo',
+          width: width_lin_cut,
+          height: 30
+        });
 
-        //----- Cursor 1
-        cur1 = document.createElement("canvas");
-        cur1.id = "cursor1";
-        cur1.width = "10";
-        cur1.height = "20";
-        cur1.style.left = pos_cur1 + "px";
-        cur1.onmousedown = function(event){
-            drag_on_c(event, this.id);
-        }
-        // Estableciendo el gradiente de color para el cursor
-        var gradient = cur1.getContext("2d").createLinearGradient(0, 0, 10, 20);
-        gradient.addColorStop(0, '#000000');
-        gradient.addColorStop(1, '#505050');
-        ctx = cur1.getContext("2d");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 10, 20);
+        var layer = new Kinetic.Layer();
+        var areas = new Kinetic.Group();
+        var scrollbars = new Kinetic.Group();
+        var container = stage.getContainer();
+        var posr= stage.getWidth()-10;
+        var posl= 10;
 
-        //----- Cursor 2
-        cur2 = document.createElement("canvas");
-        cur2.id = "cursor2";
-        cur2.width = "10";
-        cur2.height = "20";
-        cur2.style.left = pos_cur2 + "px";
-        cur2.onmousedown = function(event){
-            drag_on_c(event, this.id);
-        }
-        // Estableciendo el gradiente de color para el cursor
-        var gradient = cur2.getContext("2d").createLinearGradient(0, 0, 10, 20);
-        gradient.addColorStop(0, '#000000');
-        gradient.addColorStop(1, '#505050');
-        ctx = cur2.getContext("2d");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 10, 20);
+        /*
+         * horizontal scrollbars
+         */
+        var hscrollArea = new Kinetic.Rect({
+          x: 0,
+          y: stage.getHeight() - 30,
+          width: stage.getWidth(),
+          height: 20,
+          fill: "black",
+          alpha: 0.3
+        });
 
-        //************ A�adiendo los nuevos elemento del line cut
-        celda.appendChild(line_cut);
-        line_cut.appendChild(cur1);
-        line_cut.appendChild(cur2);
-        //video.currentTime=temp_object.cut_home;**************
+        var hscroll_l = new Kinetic.Rect({
+          x: pos_cur1,
+          y: stage.getHeight() - 30,
+          width: width_cursors,
+          height: 20,
+          fill: "#9f005b",
+          draggable: true,
+          dragConstraint: "horizontal",
+          dragBounds: {
+            left: 0,
+            right: posr,
+            setRight: function(r){
+            	this.right=r;
+          	}
+          },
+          getDragBounds:function(){
+          	return this.dragBounds;
+          },
+          alpha: 0.9,
+          stroke: "black",
+          strokeWidth: 1
+        });
+        
+        var hscroll_r = new Kinetic.Rect({
+          x: pos_cur2+10,
+          y: stage.getHeight() - 30,
+          width: width_cursors,
+          height: 20,
+          fill: "#9f005b",
+          draggable: true,
+          dragConstraint: "horizontal",
+          dragBounds: {
+            left: posl,
+            right: stage.getWidth() - 10,
+            setLeft: function(l){
+            	this.left=l;
+            }
+          },
+          getDragBounds: function(){
+            return dragBounds;
+          },
+          alpha: 0.9,
+          stroke: "black",
+          strokeWidth: 1
+        });
+
+        /*
+         * scrollbars
+         */
+        scrollbars.on("mouseover", function() {
+          document.body.style.cursor = "pointer";
+        });
+        scrollbars.on("mouseout", function() {
+          document.body.style.cursor = "default";
+        });
+        layer.beforeDraw(function() {
+          hscroll_l.getDragBounds().setRight(hscroll_r.getPosition().x-10);
+          hscroll_r.getDragBounds().setLeft(hscroll_l.getPosition().x+10);
+          pos_cur1=hscroll_l.getPosition().x;
+          pos_cur2=hscroll_r.getPosition().x-10;
+          var text_canvas=document.getElementById("text_cut");
+          text_canvas.height=20;
+          text_canvas.style.height="20px";
+          text_canvas.width=100;
+          text_canvas.style.width="100px";
+          text_canvas.style.top="0px";
+          //text_canvas.width=text_canvas.width;
+          var c_=text_canvas.getContext("2d")
+          
+          c_.font = "18px Arial"; 
+		  // Use a brown fill for our text 
+		  c_.fillStyle = '#FFFFFF'; 
+		  // Text can be aligned when displayed 
+		  c_.textAlign = 'left'; 
+		  c_.textBaseline = "top";//top, hanging, middle, alphabetic, ideographic, bottom 
+		  // Draw the text in the middle of the canvas with a max 
+		  //  width set to center properly 
+		  c_.fillText("1: "+Math.round(((pos_cur1 * temp_object.duration) / 481))+' S. | 2: '+Math.round((pos_cur2 * temp_object.duration) / 481)+" S.", 0, 0, 100); //fillText (text, x, y, maxwidth), strokeText (text, x, y, maxwidth)
+          cortar_contenido = true;          
+        });
+
+        areas.add(hscrollArea);
+        scrollbars.add(hscroll_l);
+        scrollbars.add(hscroll_r);
+        layer.add(areas);
+        layer.add(scrollbars);
+        stage.add(layer);
+		
+        //--------------------------------------------------------------------------------------//
+        
+        
     }
 
 }
@@ -370,6 +458,7 @@ function cerrar_video(){
         celda.innerHTML = "";
         isCutteable = false;
         if (cortar_contenido){
+        	console.log("--> "+pos_cur1+"  "+pos_cur2);
             // vemos si hubo cambio en los cursores para cortar el contenido
             var temp_object = vector_edicion[idElementEdit];
             var cutHome = (pos_cur1 * temp_object.duration) / 481;

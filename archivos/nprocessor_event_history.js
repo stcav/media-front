@@ -12,6 +12,7 @@ function get_event_from_prog() {
 		url : "/ProgrammeProcessorServer/EventProcessorServlet",
 		data : "operation=0",
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log(response);
@@ -46,6 +47,7 @@ function get_event_from_prog() {
 								url : "/ProgrammeProcessorServer/EventProcessorServlet",
 								data : "operation=7&id=" + eventSelected,
 								type : "POST",
+								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 								cache : true,
 								success : function(response) {
 									//Obteniendo elemento de la BD
@@ -64,6 +66,7 @@ function get_event_from_prog() {
 								url : "/ProgrammeProcessorServer/EventProcessorServlet",
 								data : "operation=8&id=" + eventSelected,
 								type : "POST",
+								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 								cache : true,
 								success : function(response) {
 									//Obteniendo elemento de la BD
@@ -99,6 +102,7 @@ function deleteProcessorEvent(idEve){
 		url : "/ProgrammeProcessorServer/EventProcessorServlet",
 		data : "operation=2&id=" + idEve,
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 				deleteECByID("programsBar");
@@ -136,6 +140,7 @@ function do_send_data_we(URL, data_) {
 		url : URL,
 		data : data_,
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);

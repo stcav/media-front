@@ -12,6 +12,7 @@ function get_tags() {
 		url : "/ContentProcessorServer/ObjectImportServlet",
 		data : "dependencia=0&mainObject=3",
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log(response);
@@ -22,7 +23,6 @@ function get_tags() {
 				element.value = obj[i].idEtiquetas
 				element.innerText = obj[i].nombre;
 				select.appendChild(element);
-				//$('.select').append("<OPTION VALUE=" + obj[i].idEtiquetas + ">" + obj[i].nombre + "</OPTION>");
 			}
 		}
 	});
@@ -47,6 +47,7 @@ function do_label_content() {
 		url : "/ContentProcessorServer/ContentLabeling",
 		data : "operation=1&" + get_data_form() + "&TimeStamp=" + new Date().getTime(),
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			if(response != "" && response.substring(0, 9) != "redirect:") {

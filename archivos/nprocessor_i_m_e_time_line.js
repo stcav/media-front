@@ -83,7 +83,7 @@ function verificando(){
 }
 
 function init(){
-    console.log("Init");
+    console.log("Init v: 1");
     elements_lc = new ElementsLine();
     elements_lc.type = 1;
     elements_lt = new ElementsLine();
@@ -570,8 +570,8 @@ function clickElement(id, e){
                         index_element = findIndexElementOverNow(elements_lt);
                         value_=parseInt(document.getElementById("text_h").value);
                         if(value_>=0 && value_< (parseInt(elements_lt.elements[index_element].end)-4)){
-                        	elements_lt.elements[index_element].home=parseInt(document.getElementById("text_h").value);
-	                        elements_lt.elements[index_element].duration=(parseInt(elements_lt.elements[index_element].end)-parseInt(elements_lt.elements[index_element].home));
+                        	elements_lt.elements[index_element].home=value_;
+	                        elements_lt.elements[index_element].duration=(parseInt(elements_lt.elements[index_element].end)-value_);
 	                        graphicCleanerLineSegment(document.getElementById("line_text"), 0, 1799);
 	                        graphicUpdateElementsSinceIndex(document.getElementById("line_text"), elements_lt, 0);
                         }else{

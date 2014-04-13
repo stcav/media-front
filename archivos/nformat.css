@@ -4,6 +4,17 @@ body {
 	background-color: #FFFFFF;
 }
 
+.div_wait_processing_video{
+	background-color: #52514C;
+	width:407px;
+	color:white;
+	border-width: 2px;
+	border-color: #111111;
+	border-style: solid;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
 .C_Video {
 	position:absolute;
 	width:646px;

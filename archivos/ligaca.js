@@ -103,7 +103,7 @@ function createLink(tag, align, font, width, height, id, e){
     boton.getContext('2d').font = font;
     boton.getContext('2d').fillStyle = '#000000';
     boton.getContext('2d').textAlign = align;
-    boton.getContext('2d').fillText(tag, 0, 15, 14);
+    boton.getContext('2d').fillText(tag, 0, 15, width);
 
     //guardando elemento logico
     elementsCanvas.push(obj);
@@ -115,7 +115,7 @@ function createLink(tag, align, font, width, height, id, e){
         boton.getContext('2d').font = temp.font;
         boton.getContext('2d').fillStyle = '#0055FF';
         boton.getContext('2d').textAlign = temp.align;
-        boton.getContext('2d').fillText(tag, 0, 15, 14);
+        boton.getContext('2d').fillText(tag, 0, 15, width);
 
     }
     boton.onmouseout = function(){
@@ -124,7 +124,7 @@ function createLink(tag, align, font, width, height, id, e){
         boton.getContext('2d').font = temp.font;
         boton.getContext('2d').fillStyle = '#000000';
         boton.getContext('2d').textAlign = temp.align;
-        boton.getContext('2d').fillText(tag, 0, 15, 14);
+        boton.getContext('2d').fillText(tag, 0, 15, width);
     }
 
     return boton;

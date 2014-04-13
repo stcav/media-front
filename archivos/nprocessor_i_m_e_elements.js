@@ -401,6 +401,7 @@ function do_save(){
 	        url: "/ProgrammeProcessorServer/EventProcessorServlet",
 	        data: "operation=10&descriptor=" + jsonStr,
 	        type: "POST",
+	        contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 	        cache: true,
 	        success: function(response){
 	            //Obteniendo elemento de la BD
@@ -462,6 +463,7 @@ function do_send_data_we(URL, data_) {
 		url : URL,
 		data : data_,
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);

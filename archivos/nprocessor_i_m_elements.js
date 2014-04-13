@@ -400,6 +400,7 @@ function do_save(){
         url: "/ProgrammeProcessorServer/EventProcessorServlet",
         data: "operation=4&descriptor=" + jsonStr,
         type: "POST",
+        contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
         cache: true,
         success: function(response){
             //Obteniendo elemento de la BD

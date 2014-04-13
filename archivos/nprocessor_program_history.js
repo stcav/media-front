@@ -70,43 +70,44 @@ function generateDescription(program) {
 	document.getElementById("imageProgram").innerHTML = "";
 	document.getElementById("imageProgram").appendChild(img);
 	console.log(program.dia);
+	hour_= new Date(program.hora).getHours()+":"+new Date(program.hora).getMinutes()+" h";
 	switch (program.dia) {
 		case '0':
 			document.getElementById("Hour").innerHTML = "No asignado";
 
 			break;
 		case '1':
-			document.getElementById("Hour").innerHTML = "Lunes a las " + program.hora;
+			document.getElementById("Hour").innerHTML = "Lunes a las " + hour_;
 
 			break;
 		case '2':
 			{
-				document.getElementById("Hour").innerHTML = "Martes a las " + program.hora;
+				document.getElementById("Hour").innerHTML = "Martes a las " + hour_;
 			}
 			break;
 		case '3':
 			{
-				document.getElementById("Hour").innnrHTML = "Miercoles a las " + program.hora;
+				document.getElementById("Hour").innnrHTML = "Miercoles a las " + hour_;
 			}
 			break;
 		case '4':
 			{
-				document.getElementById("Hour").innerHTML = "Jueves a las " + program.hora;
+				document.getElementById("Hour").innerHTML = "Jueves a las " + hour_;
 			}
 			break;
 		case '5':
 			{
-				document.getElementById("Hour").innerHTML = "Viernes a las " + program.hora;
+				document.getElementById("Hour").innerHTML = "Viernes a las " + hour_;
 			}
 			break;
 		case '6':
 			{
-				document.getElementById("Hour").innerHTML = "Sabado a las " + program.hora;
+				document.getElementById("Hour").innerHTML = "Sabado a las " + hour_;
 			}
 			break;
 		case '7':
 			{
-				document.getElementById("Hour").innerHTML = "Domingo a las " + program.hora;
+				document.getElementById("Hour").innerHTML = "Domingo a las " + hour_;
 			}
 			break;
 		default:
@@ -213,6 +214,7 @@ function do_send_data_we(URL, data_) {
 		url : URL,
 		data : data_,
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);
@@ -224,9 +226,9 @@ function do_send_data_we(URL, data_) {
 
 function community_reference() {
 	$.ajax({
-		//url : "http://192.168.120.26:8080/stcav/ReferenceServlet",
+		curl : "http://192.168.119.98:8080/stcav/ReferenceServlet",
 		//url : "http://localhost:38415/STCAV/ReferenceServlet",
-		url : "/STCAV/ReferenceServlet",
+		//url : "/STCAV/ReferenceServlet",
 		data : "operation=2",
 		type : "POST",
 		dataType : "script",

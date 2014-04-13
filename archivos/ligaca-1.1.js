@@ -193,14 +193,14 @@ function createMenuBar(id, elements, width, height, font, isHorizontal, e) {
 	//guardando elemento logico en el vector global
 	elementsCanvas.push(obj);
 
+	//dibujando el barMenu
+	bar.getContext('2d').fillStyle = gradient;
+	bar.getContext('2d').fillRect(0, 0, width, height);
+
 	//*** Interfaz Grafica
 	bar.getContext('2d').font = font.size + "px " + font.font;
 	bar.getContext('2d').textAlign = 'center';
 	bar.getContext('2d').textBaseline = "middle";
-
-	//dibujando el barMenu
-	bar.getContext('2d').fillStyle = gradient;
-	bar.getContext('2d').fillRect(0, 0, width, height);
 
 	//dibujando los elementos
 	bar.getContext('2d').fillStyle = obj.colorUnselect;
@@ -334,15 +334,15 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 			//añado el elemento a la barra de menu
 			obj.elements.push(element_temp);
 		}
-		//*** Interfaz Grafica
-		bar.getContext('2d').font = font.size + "px " + font.font;
-		bar.getContext('2d').textAlign = 'center';
-		bar.getContext('2d').textBaseline = "middle";
-
 		//dibujando el barMenu
 		bar.getContext('2d').fillStyle = backgroundColor;
 		bar.getContext('2d').fillRect(0, 0, width, height);
 
+		//*** Interfaz Grafica
+		bar.getContext('2d').font = font.size + "px " + font.font;
+		bar.getContext('2d').textAlign = 'center';
+		bar.getContext('2d').textBaseline = "middle";
+		
 		for(var i = 0; i < obj.elements.length; i++) {
 			console.log("dibujando elemento " + i + " home: " + obj.elements[i].home + " end: " + obj.elements[i].end);
 			bar.getContext('2d').fillStyle = font.color;
@@ -364,15 +364,15 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 			//añado el elemento a la barra de menu
 			obj.elements.push(element_temp);
 		}
-		//*** Interfaz Grafica
-		bar.getContext('2d').font = font.size + "px " + font.font;
-		bar.getContext('2d').textAlign = 'center';
-		bar.getContext('2d').textBaseline = "middle";
-
 		//dibujando el barMenu
 		bar.getContext('2d').fillStyle = backgroundColor;
 		bar.getContext('2d').fillRect(0, 0, width, height);
 
+		//*** Interfaz Grafica
+		bar.getContext('2d').font = font.size + "px " + font.font;
+		bar.getContext('2d').textAlign = 'center';
+		bar.getContext('2d').textBaseline = "middle";
+		
 		for(var i = 0; i < obj.elements.length; i++) {
 			console.log("dibujando elemento " + i + " home: " + obj.elements[i].home + " end: " + obj.elements[i].end);
 			bar.getContext('2d').fillStyle = font.color;
@@ -411,25 +411,25 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 					this.getContext('2d').fillRect(obj.elements[obj.elementOver].home, 0, obj.elements[obj.elementOver].end - obj.elements[obj.elementOver].home, 20);
 					if(obj.elements[obj.elementOver].isSelect) {
 						this.getContext('2d').fillStyle = obj.font.color;
-						this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+						this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 					} else {
 						this.getContext('2d').fillStyle = obj.font.color;
 						this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
 					}
-					this.getContext('2d').fillText(obj.elements[obj.elementOver].nombre, (obj.elements[obj.elementOver].end + obj.elements[obj.elementOver].home) / 2, obj.height / 2, obj.width_element);
+					this.getContext('2d').fillText(obj.elements[obj.elementOver].nombre, (obj.elements[obj.elementOver].end + obj.elements[obj.elementOver].home) / 2, obj.height / 2, width_element);
 				}
 				obj.elementOver = index_temp_element;
 				this.getContext('2d').fillStyle = obj.colorSelect;
 				this.getContext('2d').fillRect(obj.elements[index_temp_element].home, 0, obj.elements[index_temp_element].end - obj.elements[index_temp_element].home, 20);
 				if(obj.elements[index_temp_element].isSelect) {
 					this.getContext('2d').fillStyle = obj.font.color;
-					this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+					this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 				} else {
 					this.getContext('2d').fillStyle = obj.font.color;
 					this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
 
 				}
-				this.getContext('2d').fillText(obj.elements[index_temp_element].nombre, (obj.elements[index_temp_element].end + obj.elements[index_temp_element].home) / 2, obj.height / 2, obj.width_element);
+				this.getContext('2d').fillText(obj.elements[index_temp_element].nombre, (obj.elements[index_temp_element].end + obj.elements[index_temp_element].home) / 2, obj.height / 2, width_element);
 			}
 		} else {
 			//obteniendo el objeto bar y su posicion absoluta
@@ -448,7 +448,7 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 					this.getContext('2d').fillRect(0, obj.elements[obj.elementOver].home, obj.width, obj.elements[obj.elementOver].end - obj.elements[obj.elementOver].home);
 					if(obj.elements[obj.elementOver].isSelect) {
 						this.getContext('2d').fillStyle = obj.font.color;
-						this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+						this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 					} else {
 						this.getContext('2d').fillStyle = obj.font.color;
 						this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
@@ -460,7 +460,7 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 				this.getContext('2d').fillRect(0, obj.elements[obj.elementOver].home, obj.width, obj.elements[obj.elementOver].end - obj.elements[obj.elementOver].home);
 				if(obj.elements[index_temp_element].isSelect) {
 					this.getContext('2d').fillStyle = obj.font.color;
-					this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+					this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 				} else {
 					this.getContext('2d').fillStyle = obj.font.color;
 					this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
@@ -485,18 +485,18 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 			this.getContext('2d').fillRect(obj.elements[obj.elementOver].home, 0, obj.elements[obj.elementOver].end - obj.elements[obj.elementOver].home, 20);
 			if(obj.elements[obj.elementOver].isSelect) {
 				this.getContext('2d').fillStyle = obj.font.color;
-				this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+				this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 			} else {
 				this.getContext('2d').fillStyle = obj.font.color;
 				this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
 			}
-			this.getContext('2d').fillText(obj.elements[obj.elementOver].nombre, (obj.elements[obj.elementOver].end + obj.elements[obj.elementOver].home) / 2, obj.height / 2, obj.width_element);
+			this.getContext('2d').fillText(obj.elements[obj.elementOver].nombre, (obj.elements[obj.elementOver].end + obj.elements[obj.elementOver].home) / 2, obj.height / 2, width_element);
 		} else {
 			this.getContext('2d').fillStyle = obj.colorUnselect;
 			this.getContext('2d').fillRect(0, obj.elements[obj.elementOver].home, obj.width, obj.elements[obj.elementOver].end - obj.elements[obj.elementOver].home);
 			if(obj.elements[obj.elementOver].isSelect) {
 				this.getContext('2d').fillStyle = obj.font.color;
-				this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
+				this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
 			} else {
 				this.getContext('2d').fillStyle = obj.font.color;
 				this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
@@ -519,9 +519,10 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 			if(obj.elementSelect != (-1)) {
 				this.getContext('2d').fillStyle = obj.colorUnselect;
 				this.getContext('2d').fillRect(obj.elements[obj.elementSelect].home, 0, obj.elements[obj.elementSelect].end - obj.elements[obj.elementSelect].home, 20);
+				console.log(obj.font.size + "px " + obj.font.font);
 				this.getContext('2d').font = obj.font.size + "px " + obj.font.font;
 				this.getContext('2d').fillStyle = obj.font.color;
-				this.getContext('2d').fillText(obj.elements[obj.elementSelect].nombre, (obj.elements[obj.elementSelect].end + obj.elements[obj.elementSelect].home) / 2, obj.height / 2, obj.width_element);
+				this.getContext('2d').fillText(obj.elements[obj.elementSelect].nombre, (obj.elements[obj.elementSelect].end + obj.elements[obj.elementSelect].home) / 2, obj.height / 2, width_element);
 				obj.elements[obj.elementSelect].isSelect = false;
 			}
 
@@ -529,9 +530,11 @@ function create_menu_bar(id, elements, width, height, font, backgroundColor, ove
 			obj.elements[obj.elementSelect].isSelect = true;
 			this.getContext('2d').fillStyle = obj.colorSelect;
 			this.getContext('2d').fillRect(obj.elements[obj.elementSelect].home, 0, obj.elements[obj.elementSelect].end - obj.elements[obj.elementSelect].home, 20);
-			this.getContext('2d').font = "Bold " + (obj.font.size + 1) + "px " + obj.font.font;
 			this.getContext('2d').fillStyle = obj.font.color;
-			this.getContext('2d').fillText(obj.elements[obj.elementSelect].nombre, (obj.elements[obj.elementSelect].end + obj.elements[obj.elementSelect].home) / 2, obj.height / 2, obj.width_element);
+			this.getContext('2d').font = "bold " + (obj.font.size + 1) + "px " + obj.font.font;
+			//console.log("bold " + (obj.font.size + 1) + "px " + obj.font.font);
+			//console.log(obj.elements[obj.elementSelect].nombre + (obj.elements[obj.elementSelect].end + obj.elements[obj.elementSelect].home) / 2 + obj.height / 2 + obj.width_element)
+			this.getContext('2d').fillText(obj.elements[obj.elementSelect].nombre, (obj.elements[obj.elementSelect].end + obj.elements[obj.elementSelect].home) / 2, obj.height / 2, width_element);
 		} else {
 			if(obj.elementSelect != (-1)) {
 				this.getContext('2d').fillStyle = obj.colorUnselect;

@@ -31,6 +31,7 @@ function get_content_metainfo() {
 		url : "/ContentProcessorServer/ObjectImportServlet",
 		data : "dependencia=0&mainObject=1",
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			var obj = jQuery.parseJSON(response);
@@ -47,6 +48,7 @@ function get_content_tag() {
 		url : "/ContentProcessorServer/TagProcessorServlet",
 		data : "operation=0",
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			var tags = response;
@@ -92,6 +94,7 @@ function do_send_data_we(URL, data_) {
 		url : URL,
 		data : data_,
 		type : "POST",
+		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);

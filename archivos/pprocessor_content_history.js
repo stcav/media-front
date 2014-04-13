@@ -1,6 +1,5 @@
 //Variable para habilitar el menu vertical emergente
 var swap_id=0;
-var is_init_processing=false;
 
 function init() {
 	get_contents();
@@ -39,49 +38,16 @@ function is_processing_content() {
 				var ba = jQuery.parseJSON(response);
 				if(ba.estado==0){
 					if(document.getElementById("div_processing")!=undefined){
-						if(!is_init_processing){
-							div_pros = document.getElementById("div_processing");
-							
-							//Creando la division para el icono de espera y el mensaje de contenido en proceso de adaptacion
-							var table=document.createElement("table");
-							table.width = "100%";
-							table.border = 0;
-							var newRow = table.insertRow(-1);
-							var newCell = newRow.insertCell(-1);
-							
-							//Creando el elemento grafico de espera
-							img_clock= document.createElement("img");
-							img_clock.src="/archivos/clock.gif";
-							img_clock.width=30;
-							img_clock.height=40;
-							newCell.appendChild(img_clock);
-							
-							//Creando texto de espera de terminacion de proceso de adaptacion
-							var newCell = newRow.insertCell(-1);
-							newCell.innerText=ba.descripcion;
-							
-							//Anadiendo la tabla al div correspondiente
-							div_pros.appendChild(table);
-							
-							//dando por inicializado el proceso de presentacion de estado de adaptacion
-							is_init_processing=true;
-						}
-						
+						div_pros = document.getElementById("div_processing");
+						div_pros.innerHTML=ba.descripcion;
 						
 					}else{
 						div_pros = document.createElement("div");
-						//div_pros.innerHTML=ba.descripcion;
+						div_pros.innerHTML=ba.descripcion;
 						div_pros.id="div_processing";
-						div_pros.className="div_wait_processing_video";
 						document.getElementById("processing_td").appendChild(div_pros);
 					}
 					setTimeout(function() {is_processing_content();}, 500);
-				}
-				else{
-					div_pros = document.getElementById("div_processing");
-					div_pros.innerHTML="";
-					get_contents();
-					is_init_processing=false;
 				}
 				
 			}
@@ -161,14 +127,14 @@ function load_content_panel(contents) {
 					font.font = "Arial";
 					font.size = 13;
 					font.color = "#FFFFFF";
-					elements_t = ["Reproducir", "Editar"];
+					elements_t = ["Reproducir"];
 					ver_menu = create_listening_menu("div_vertical_menu", elements_t, font, "#101010", "#51504B");
 					//sobrecargando el evento del elemento retornado para hacer uso del menu
 					ver_menu.onmousedown = function() {
 						type_element = get_id_click_element_menuBar(this.id, event.clientY) + 1;
 						console.log(type_element);
 						switch(type_element){
-							case 1:{
+							case 2:{
 								$.ajax({
 								url : "/ContentProcessorServer/ContentProcessorServlet",
 								data : "operation=2&id=" + swap_id,
@@ -187,7 +153,96 @@ function load_content_panel(contents) {
 								});
 								break;
 							}
-							case 2:{
+							case 1:{
+								$.ajax({
+								url : "/ContentProcessorServer/ContentProcessorServlet",
+								data : "operation=2&id=" + swap_id,
+								type : "POST",
+								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
+								cache : true,
+								success : function(response) {
+									//Obteniendo elemento de la BD
+									console.log("response: " + response);
+									//document.getElementById("video").pause();
+									
+									var content = jQuery.parseJSON(response);
+									div_ = document.createElement("div");
+									div_.style.position="absolute";
+									div_.style.left=0;
+									div_.style.top=0;
+									div_.style.zIndex=3;
+									div_.height=screen.availHeight;
+									div_.width=screen.availWidth;
+									div_.style.width=(1350)+"px";
+									div_.style.height=(760)+"px";
+									div_.style.background="black";
+									div_.align="center";
+									div_.id="div_";
+									div_.style.overflow="hidden";
+									x=1.05;
+									video_ = document.createElement("video");
+									video_.id="vid_";
+									video_.src = "/ContentRepository/" + content.rutafuente;
+									video_.height=screen.availHeight*x;
+									video_.width=screen.availWidth*x;
+									video_.controls="controls";
+									video_.ondblclick=function(){
+										div_=document.getElementById("div_");
+										document.body.removeChild(div_);
+									}
+									video_.onclick=function(){
+										if(this.paused){
+											this.play();
+										}else{
+											this.pause();
+										}
+										
+									}
+									document.onkeyup=function(){
+										//alert(event.keyCode);
+										v=document.getElementById("vid_");
+										switch(event.keyCode){
+											case 227:{
+												
+												if(v.currentTime>2){
+													v.currentTime=v.currentTime-2;
+												}
+												
+												
+												break;
+											}
+											case 228:{
+												v.currentTime=v.currentTime+2;
+												
+												break;
+											}
+											case 179:{
+												if(v.paused){
+											v.play();
+										}else{
+											v.pause();
+										}
+												
+												break;
+											}
+											default:{
+												break;
+											}
+										}
+									}
+									div_.appendChild(video_);
+									document.body.appendChild(div_);
+									video_.load();
+									video_.currentTime=0;
+									//video_.play();
+									
+									
+
+								}
+								});
+								break;
+							}
+							case 3:{
 									fees = new Array();
 									fee = new FormEditElement();
 									fee.id = "titulo";
