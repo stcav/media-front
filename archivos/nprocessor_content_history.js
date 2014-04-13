@@ -103,7 +103,7 @@ function get_contents(ignoreMetric) {
 	//peticion AJAX para obtener los valores del elemento asociado
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
-		data : "operation=0",
+		data : "operation=0"+ignoreMetricParam,
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		success : function(response) {
