@@ -41,33 +41,33 @@ function is_processing_content() {
 					if(document.getElementById("div_processing")!=undefined){
 						if(!is_init_processing){
 							div_pros = document.getElementById("div_processing");
-							
+
 							//Creando la division para el icono de espera y el mensaje de contenido en proceso de adaptacion
 							var table=document.createElement("table");
 							table.width = "100%";
 							table.border = 0;
 							var newRow = table.insertRow(-1);
 							var newCell = newRow.insertCell(-1);
-							
+
 							//Creando el elemento grafico de espera
 							img_clock= document.createElement("img");
 							img_clock.src="/archivos/clock.gif";
 							img_clock.width=30;
 							img_clock.height=40;
 							newCell.appendChild(img_clock);
-							
+
 							//Creando texto de espera de terminacion de proceso de adaptacion
 							var newCell = newRow.insertCell(-1);
 							newCell.innerText=ba.descripcion;
-							
+
 							//Anadiendo la tabla al div correspondiente
 							div_pros.appendChild(table);
-							
+
 							//dando por inicializado el proceso de presentacion de estado de adaptacion
 							is_init_processing=true;
 						}
-						
-						
+
+
 					}else{
 						div_pros = document.createElement("div");
 						//div_pros.innerHTML=ba.descripcion;
@@ -83,12 +83,23 @@ function is_processing_content() {
 					get_contents();
 					is_init_processing=false;
 				}
-				
+
 			}
 	});
 }
 
-function get_contents() {
+/*
+* create all grid system associated with user's videos
+*
+* @param ignoreMetric [boolean], add ignore_metric url param into ajax url
+*/
+function get_contents(ignoreMetric) {
+	//peticion AJAX para obtener los valores del elemento asociado
+	var ignoreMetricParam = "";
+
+	if(ignoreMetric == true){
+		ignoreMetricParam = "&ignore_metric=true";
+	}
 	//peticion AJAX para obtener los valores del elemento asociado
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
@@ -168,6 +179,7 @@ function load_content_panel(contents) {
 						type_element = get_id_click_element_menuBar(this.id, event.clientY) + 1;
 						console.log(type_element);
 						switch(type_element){
+							// play picked video
 							case 1:{
 								$.ajax({
 								url : "/ContentProcessorServer/ContentProcessorServlet",
@@ -187,6 +199,7 @@ function load_content_panel(contents) {
 								});
 								break;
 							}
+							// edit picked video
 							case 2:{
 									fees = new Array();
 									fee = new FormEditElement();
@@ -248,7 +261,7 @@ function do_send_data_we(URL, data_) {
 		cache : true,
 		success : function(response) {
 			console.log("response: " + response);
-			get_contents();
+			get_contents(true);
 		}
 	});
 }
