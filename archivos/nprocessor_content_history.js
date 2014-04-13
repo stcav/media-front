@@ -79,8 +79,10 @@ function is_processing_content() {
 				}
 				else{
 					div_pros = document.getElementById("div_processing");
-					div_pros.innerHTML="";
-					get_contents();
+					if(div_pros!=null){
+						div_pros.innerHTML="";
+						get_contents();
+					}
 					is_init_processing=false;
 				}
 
