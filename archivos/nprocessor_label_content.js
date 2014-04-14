@@ -61,7 +61,7 @@ function do_label_content() {
 	});
 }
 
-function get_data_form()//Esta funci�n construye una cadena con los 3 datos
+function get_data_form()//Esta funcion construye una cadena con los 3 datos
 {
 	//Cogemos los datos de cada campo y los metemos en una variable cada uno
 	var Titulo = document.getElementById("titulo").value;
