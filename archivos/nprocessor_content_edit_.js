@@ -63,7 +63,7 @@ function init() {
 				load_content_panel(contents);
 			}
 			});
-		}	
+		}
 	}
 }
 
@@ -83,7 +83,7 @@ function load_panel() {
 		switch (type_element) {
 			case 1: {
 				//peticion AJAX para obtener los valores del elemento asociado
-				get_contents();
+				get_contents(true);
 				break;
 			}
 			case 2: {
@@ -112,11 +112,22 @@ function load_panel() {
 	div_.appendChild(bar);
 }
 
-function get_contents() {
+/*
+* create all grid system associated with user's videos
+*
+* @param ignoreMetric [boolean], add ignore_metric url param into ajax url
+*/
+function get_contents(ignoreMetric) {
+	//peticion AJAX para obtener los valores del elemento asociado
+	var ignoreMetricParam = "";
+
+	if(ignoreMetric == true){
+		ignoreMetricParam = "&ignore_metric=true";
+	}
 	//peticion AJAX para obtener los valores del elemento asociado
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
-		data : "operation=0",
+		data : "operation=0"+ignoreMetricParam,
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		success : function(response) {
@@ -266,7 +277,7 @@ function PlayContentbyID(id){
 
 function ver_video(content){
     // este content es el asociado al content json y NO al obj_edicion
-    
+
     var vid_temp = document.getElementById("video");
     vid_temp.src = "ContentRepository/" + content.rutafuente;
     vid_temp.load();
@@ -284,14 +295,14 @@ function ver_video(content){
 	canvas_back.getContext('2d').fillStyle="rgba(44,44,44,0.8)";
 	canvas_back.getContext('2d').fillRect(0,0,1100,650);
 	div_back.appendChild(canvas_back);
-	document.body.appendChild(div_back);    
+	document.body.appendChild(div_back);
     document.getElementById("C_Video").style.visibility = "visible";
     document.getElementById("C_Video").style.zIndex=5;
 	document.getElementById("C_Video").style.left="227px";
 	document.getElementById("C_Video").style.top="118px";
     ver_contenido = true;
     if (isCutteable){
-        // Esta variable se examina para ver si la accion del play video esta asociada con la linea de tiempo, si es asi, se muestran las cursosr de corte 
+        // Esta variable se examina para ver si la accion del play video esta asociada con la linea de tiempo, si es asi, se muestran las cursosr de corte
         var celda = document.getElementById("cut_video");
         celda.style.backgroundColor = "#000000";
         celda.innerHTML = "";
@@ -305,12 +316,12 @@ function ver_video(content){
         text_cut.style.top="-20px";
         text_cut.style.width="30px";
         text_cut.style.height="0px";
-        
+
         celda.appendChild(line_cut);
         celda.appendChild(text_cut);
 		var width_lin_cut=501;
 		var width_cursors=10;
-		
+
 		//****************** estableciendo el texto de corte ********************//
 		var text_canvas = document.createElement("canvas");
 		text_canvas.id="text_cut";
@@ -321,9 +332,9 @@ function ver_video(content){
         pos_cur1 = (temp_object.cut_home * (width_lin_cut-width_cursors*2)) / temp_object.duration;
         pos_cur2 = (temp_object.cut_end * (width_lin_cut-width_cursors*2)) / temp_object.duration;
         console.log(" posiciones iniciales cur1 :" + pos_cur1 + " cur2: " + pos_cur2);
-        
+
 		//--------------------------------------------------------------------------------------//
-		
+
 		var stage = new Kinetic.Stage({
           container: 'c_barra_tiempo',
           width: width_lin_cut,
@@ -371,7 +382,7 @@ function ver_video(content){
           stroke: "black",
           strokeWidth: 1
         });
-        
+
         var hscroll_r = new Kinetic.Rect({
           x: pos_cur2+10,
           y: stage.getHeight() - 30,
@@ -417,17 +428,17 @@ function ver_video(content){
           text_canvas.style.top="0px";
           //text_canvas.width=text_canvas.width;
           var c_=text_canvas.getContext("2d")
-          
-          c_.font = "18px Arial"; 
-		  // Use a brown fill for our text 
-		  c_.fillStyle = '#FFFFFF'; 
-		  // Text can be aligned when displayed 
-		  c_.textAlign = 'left'; 
-		  c_.textBaseline = "top";//top, hanging, middle, alphabetic, ideographic, bottom 
-		  // Draw the text in the middle of the canvas with a max 
-		  //  width set to center properly 
+
+          c_.font = "18px Arial";
+		  // Use a brown fill for our text
+		  c_.fillStyle = '#FFFFFF';
+		  // Text can be aligned when displayed
+		  c_.textAlign = 'left';
+		  c_.textBaseline = "top";//top, hanging, middle, alphabetic, ideographic, bottom
+		  // Draw the text in the middle of the canvas with a max
+		  //  width set to center properly
 		  c_.fillText("1: "+Math.round(((pos_cur1 * temp_object.duration) / 481))+' S. | 2: '+Math.round((pos_cur2 * temp_object.duration) / 481)+" S.", 0, 0, 100); //fillText (text, x, y, maxwidth), strokeText (text, x, y, maxwidth)
-          cortar_contenido = true;          
+          cortar_contenido = true;
         });
 
         areas.add(hscrollArea);
@@ -436,10 +447,10 @@ function ver_video(content){
         layer.add(areas);
         layer.add(scrollbars);
         stage.add(layer);
-		
+
         //--------------------------------------------------------------------------------------//
-        
-        
+
+
     }
 
 }
@@ -529,7 +540,7 @@ function vol_up(){
 		vol=99;
 	}
 	video.volume=vol/100;
-	set_value_progres_bar("bar_vol", vol);	
+	set_value_progres_bar("bar_vol", vol);
 }
 //******************************************************************************************************************************//
 
@@ -605,7 +616,7 @@ function dropContent(id){
 				switch(type_element){
 					case 1:{
 						//console.log("this: " + document.getElementById(swap_id).parentNode.id);
-            			//idElementEdit = obtenerElemento(document.getElementById(swap_id).parentNode.id, 0, '_');            			
+            			//idElementEdit = obtenerElemento(document.getElementById(swap_id).parentNode.id, 0, '_');
             			index = obtenerElemento(document.getElementById(swap_id).parentNode.id, 0, '_');
             			//console.log(index);
             			idElementEdit = search_idElement_by_index(index);
@@ -616,7 +627,7 @@ function dropContent(id){
 					}
 					case 2:{
 						index = obtenerElemento(document.getElementById(swap_id).parentNode.id, 0, '_');
-						delete_element_vector_edition(search_idElement_by_index(index));	
+						delete_element_vector_edition(search_idElement_by_index(index));
 						document.all.fila_tiempo.deleteCell(document.getElementById(swap_id).parentNode.cellIndex+1);
 						document.all.fila_tiempo.deleteCell(document.getElementById(swap_id).parentNode.cellIndex);
 						break;
@@ -625,7 +636,7 @@ function dropContent(id){
 						break;
 					}
 				}
-			}			
+			}
             // click en la linea de tiempo
             /*console.log("this: " + this.parentNode.id);
             idElementEdit = obtenerElemento(this.parentNode.id, 0, '_');
