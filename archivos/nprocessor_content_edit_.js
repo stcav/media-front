@@ -302,7 +302,7 @@ function ver_video(content){
 	document.getElementById("C_Video").style.top="118px";
     ver_contenido = true;
     if (isCutteable){
-        // Esta variable se examina para ver si la accion del play video esta asociada con la linea de tiempo, si es asi, se muestran las cursosr de corte
+        // Esta variable se examina para ver si la accion del play video esta asociada con la linea de tiempo, si es asi, se muestran las cursor de corte
         var celda = document.getElementById("cut_video");
         celda.style.backgroundColor = "#000000";
         celda.innerHTML = "";
@@ -645,7 +645,7 @@ function dropContent(id){
         }
         celda.appendChild(thumbnail);
 
-        //a�adiendo contenido al descriptor  de informacion sobre el vector de edicion
+        //anadiendo contenido al descriptor  de informacion sobre el vector de edicion
         addContentVE_AJAX(obtenerElemento(intercambio, 0, '*'));
         //Id real no el del thumbnail, puesto que este ha sido modificado con LT_
         //**************************************************haciendo las nuevas celdas drop
