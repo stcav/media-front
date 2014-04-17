@@ -105,7 +105,7 @@ function get_contents(ignoreMetric) {
 	//peticion AJAX para obtener los valores del elemento asociado
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
-		data : "operation=0"+ignoreMetricParam,
+		data : "operation=0&management_record=11"+ignoreMetricParam,
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		success : function(response) {
@@ -185,7 +185,7 @@ function load_content_panel(contents) {
 							case 1:{
 								$.ajax({
 								url : "/ContentProcessorServer/ContentProcessorServlet",
-								data : "operation=2&id=" + swap_id,
+								data : "operation=2&id=" + swap_id + "&management_record=12",
 								type : "POST",
 								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 								cache : true,
@@ -257,7 +257,7 @@ function do_send_data_we(URL, data_) {
 	console.log("URL: " + URL + " data: " + data_);
 	$.ajax({
 		url : URL,
-		data : data_,
+		data : data_+"&management_record=14",
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
@@ -272,7 +272,7 @@ function do_send_data_we(URL, data_) {
 function get_content_metainfo(id) {
 	$.ajax({
 		url : "/ContentProcessorServer/ContentProcessorServlet",
-		data : "operation=2&id="+id,
+		data : "operation=2&id="+ id + "&management_record=13",
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
