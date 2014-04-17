@@ -991,7 +991,7 @@ function do_save(){
     //peticion AJAX para obtener los valores del elemento asociado
     $.ajax({
         url: "/ContentProcessorServer/ContentProcessorServlet",
-        data: "operation=7&descriptor=" + jsonStr,
+        data: "operation=7&descriptor=" + jsonStr + "&management_record=31",
         type: "POST",
         contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
         cache: true,
