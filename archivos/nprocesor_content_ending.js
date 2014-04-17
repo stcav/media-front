@@ -92,7 +92,7 @@ function do_send_data_we(URL, data_) {
 	console.log("URL: " + URL + " data: " + data_);
 	$.ajax({
 		url : URL,
-		data : data_,
+		data : data_+"&management_record=21",
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
