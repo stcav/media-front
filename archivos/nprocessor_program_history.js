@@ -226,9 +226,9 @@ function do_send_data_we(URL, data_) {
 
 function community_reference() {
 	$.ajax({
-		curl : "http://192.168.119.98:8080/stcav/ReferenceServlet",
+		//url : "http://192.168.119.98:8080/stcav/ReferenceServlet",
 		//url : "http://localhost:38415/STCAV/ReferenceServlet",
-		//url : "/STCAV/ReferenceServlet",
+		url : "/STCAV/ReferenceServlet",
 		data : "operation=2",
 		type : "POST",
 		dataType : "script",
@@ -238,7 +238,7 @@ function community_reference() {
 
 //Metodo llamado a traves de JSONP
 function redirect(reference, operation) {
-	
+
 	console.info("INFO JSONP: " + operation + " " + reference);
 	$.ajax({
 		url : "/ProgrammeProcessorServer/ReferenceServlet",
@@ -246,7 +246,7 @@ function redirect(reference, operation) {
 		type : "POST",
 		async : false
 	}).responseText
-	
+
 	console.info("INFO JSONP_: "+operation+" "+reference);
 	$.ajax({
 		url : "/ContentProcessorServer/ReferenceServlet",
