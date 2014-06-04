@@ -126,7 +126,7 @@ function creation_grid(obj, divID){
     tabla.id = "tabla_thumb";
     tabla.width = "100%";
     tabla.border = 0;
-    //obtenemos el numero de filas 
+    //obtenemos el numero de filas
     var num_fil = Math.round(obj.length / 2);
     console.log(num_fil);
     //creamos la grid con dos elementos por fila
@@ -373,11 +373,11 @@ function do_save(){
     d.lc = elements_lc;
     d.lt = elements_lt;
     d.li = elements_li;
-    
+
     max_dur = 0;
     max_dur = d.lc.elements[d.lc.elements.length-1].end;
 	max_dur = 0 + max_dur;
-	
+
 	dur_lt = 0;
 	if(d.lt.elements.length>0){
 		dur_lt = d.lt.elements[d.lt.elements.length-1].end;
@@ -391,14 +391,14 @@ function do_save(){
 		alert("Los elementos de la linea de texto y de interactividad no pueden sobrepasar en tiempo a la linea de contenidos...")
 		return
 	}
-	
+
     //codifico en JSON el descriptor
     jsonStr = JSON.stringify(d);
     console.log(jsonStr);
     //peticion AJAX para obtener los valores del elemento asociado
     $.ajax({
         url: "/ProgrammeProcessorServer/EventProcessorServlet",
-        data: "operation=4&descriptor=" + jsonStr,
+        data: "operation=4&descriptor=" + jsonStr + "&management_record=31",
         type: "POST",
         contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
         cache: true,

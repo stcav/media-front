@@ -10,7 +10,7 @@ function init() {
 function get_event_from_prog() {
 	$.ajax({
 		url : "/ProgrammeProcessorServer/EventProcessorServlet",
-		data : "operation=0",
+		data : "operation=0&management_record=21",
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
@@ -45,7 +45,7 @@ function get_event_from_prog() {
 							case 1:{
 								$.ajax({
 								url : "/ProgrammeProcessorServer/EventProcessorServlet",
-								data : "operation=7&id=" + eventSelected,
+								data : "operation=7&id=" + eventSelected + "&management_record=22",
 								type : "POST",
 								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 								cache : true,
@@ -64,7 +64,7 @@ function get_event_from_prog() {
 							case 2:{
 								$.ajax({
 								url : "/ProgrammeProcessorServer/EventProcessorServlet",
-								data : "operation=8&id=" + eventSelected,
+								data : "operation=8&id=" + eventSelected + "&management_record=23",
 								type : "POST",
 								contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 								cache : true,
@@ -77,8 +77,8 @@ function get_event_from_prog() {
 								break;
 							}
 							case 4:{
-								if(confirm("Esta seguro de querer eliminar este evento?")) { 
-									
+								if(confirm("Esta seguro de querer eliminar este evento?")) {
+
 									deleteProcessorEvent(eventSelected);
       							}
 								break;
@@ -100,7 +100,7 @@ function get_event_from_prog() {
 function deleteProcessorEvent(idEve){
 	$.ajax({
 		url : "/ProgrammeProcessorServer/EventProcessorServlet",
-		data : "operation=2&id=" + idEve,
+		data : "operation=2&id=" + idEve + "&management_record=24",
 		type : "POST",
 		contentType: "application/x-www-form-urlencoded;charset=iso-8859-1",
 		cache : true,
@@ -111,7 +111,7 @@ function deleteProcessorEvent(idEve){
 				video.src = "";
 			}
 	});
-} 
+}
 
 function create_event() {
 	fees= new Array();

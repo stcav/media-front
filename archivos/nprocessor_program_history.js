@@ -11,7 +11,7 @@ function init() {
 function get_program_from_com() {
 	$.ajax({
 		url : "/ProgrammeProcessorServer/ProgrammmeProcessorServlet",
-		data : "operation=0",
+		data : "operation=0&management_record=11",
 		type : "POST",
 		cache : true,
 		success : function(response) {
@@ -138,7 +138,7 @@ function deleteProcessorProgram() {
 	if(agree) {
 		$.ajax({
 		url : "/ProgrammeProcessorServer/ProgrammmeProcessorServlet",
-		data : "operation=2&idPrg=" + programSelected,
+		data : "operation=2&idPrg=" + programSelected + "&management_record=12",
 		type : "POST",
 		cache : true,
 		success : function(response) {
@@ -184,7 +184,7 @@ function create_program() {
 	fee.height = 5;
 	fees.push(fee);
 
-	create_window_edit("div_create_program", "NAN", 400, 100, fees, "#FFFFFF", "#333333", "#000000", "/ProgrammeProcessorServer/ProgrammmeProcessorServlet", "3", "Crear Programa");
+	create_window_edit("div_create_program", "NAN", 400, 100, fees, "#FFFFFF", "#333333", "#000000", "/ProgrammeProcessorServer/ProgrammmeProcessorServlet", "3&management_record=13", "Crear Programa");
 }
 
 function editProgram() {
@@ -204,7 +204,7 @@ function editProgram() {
 	fee.height = 5;
 	fees.push(fee);
 	edit = true;
-	create_window_edit("div_edit_program", programSelected, 400, 100, fees, "#FFFFFF", "#333333", "#000000", "/ProgrammeProcessorServer/ProgrammmeProcessorServlet", "4", "Editar Programa");
+	create_window_edit("div_edit_program", programSelected, 400, 100, fees, "#FFFFFF", "#333333", "#000000", "/ProgrammeProcessorServer/ProgrammmeProcessorServlet", "4&management_record=14", "Editar Programa");
 }
 
 //Metodo sobrecargado para enviar la peticion desde la venta de edcion temporal
